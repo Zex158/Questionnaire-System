@@ -33,6 +33,7 @@ module.exports = {
       pages: `${defaultSettings.srcPath}/pages/`,
       components: `${defaultSettings.srcPath}/components/`,
       styles: `${defaultSettings.srcPath}/styles/`,
+      model: `${defaultSettings.srcPath}/model/`,
       config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
       'react/lib/ReactMount': 'react-dom/lib/ReactMount'
     }

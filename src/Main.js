@@ -21,12 +21,12 @@ class AppComponent extends React.Component {
             <Router>
                 <div>
                     <Header/>
-                        <div className='main'>
-                            <Route path='/'  exact component={Menu} />
-                            <Route path='/register' component={Register} />
-                            <Route path='/login' component={Login} />
-                            <Route path='/q-page' component={Qpage} />
-                        </div>
+                    <div className='main'>
+                        <Route path='/'  exact component={Menu} />
+                        <Route path='/register' component={Register} />
+                        <Route path='/login' component={Login} />
+                        <Route path='/q-page' component={Qpage} />
+                    </div>
                     <Footer/>
                 </div>
             </Router>
