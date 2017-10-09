@@ -16,3 +16,4 @@ class Option {
         this.content = content;
     }
 }
+export default Option;

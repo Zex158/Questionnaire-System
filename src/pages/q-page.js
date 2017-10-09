@@ -1,6 +1,8 @@
 import React from 'react';
 import queryString from 'query-string';
-import Questionbox from 'components/questionbox'
+import Questionbox from 'components/questionbox';
+import Page from 'model/Qpage';
+import Question from 'model/Question';
 
 class Qpage extends React.Component {
     constructor(props) {
@@ -9,12 +11,31 @@ class Qpage extends React.Component {
         const { action, id } = query;
         this.state = {
             action,
-            id
+            id,
+            page: new Page()
         }
     }
 
     componentDidMount = () => {
 
+    }
+
+    addQuestion = type => {
+        if(Number.isInteger(type) && type<5 && type>0){
+            this.setState( preState => {
+                preState.page.addQuestion(new Question(type));
+                return { page: preState.page };
+            });
+        }else{
+            return;
+        }
+    }
+
+    removeQuestion = index => {
+        this.setState( preState => {
+            preState.page.removeQuestion(index);
+            return { page: preState.page };
+        })
     }
 
     render = () => {
@@ -30,15 +51,21 @@ class Qpage extends React.Component {
                         <textarea className='q-mulLine' placeholder='请输入问卷描述'></textarea>
                     </div>
 
-                    <Questionbox />
+                    {this.state.page.questions.map(question => {
+                        return (<Questionbox
+                                    question = {question}
+                                    key = {question.key}
+                                    removeQuestion = {this.removeQuestion}
+                                    action = {this.state.action} />);
+                    })}
 
                     <br />
                     <div className='q-btn-box'>
                         <span className="q-add">添加</span>
-                        <button className="q-btn" id="q-btn-1">单选</button>
-                        <button className="q-btn" id="q-btn-2">多选</button>
-                        <button className="q-btn" id="q-btn-3">问答</button>
-                        <button className="q-btn" id="q-btn-4">混合</button>
+                        <button className="q-btn" id="q-btn-1" onClick={this.addQuestion.bind(this, 1)}>单选</button>
+                        <button className="q-btn" id="q-btn-2" onClick={this.addQuestion.bind(this, 2)}>多选</button>
+                        <button className="q-btn" id="q-btn-3" onClick={this.addQuestion.bind(this, 3)}>问答</button>
+                        <button className="q-btn" id="q-btn-4" onClick={this.addQuestion.bind(this, 4)}>混合</button>
                     </div>
                 </div>
             </div>

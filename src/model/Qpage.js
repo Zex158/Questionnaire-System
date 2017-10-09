@@ -1,4 +1,4 @@
-import config from 'config/base'
+import config from '../config/base'
 /*
  * 问卷页面类
  */
@@ -12,16 +12,19 @@ class Qpage {
      * @param       {string}    authority   权限
      * @param       {Array}     questions   问题信息
      */
-    constructor(author, createdate, description, authority=‘’, questions = []) {
+    constructor(author='', createdate='', description='', authority='', questions = []) {
         this.author = author;
         this.createdate = createdate;
         this.description = description;
         this.authority = authority;
         this.questions = questions;
-        //问题数
+        //当前问题数
         this.quenum = questions.length;
+        //问题数最大值
         this.max = config.MAX_QUESTION;
-    },
+        //组件key值管理
+        this.key = 0;
+    }
 
     /**
      * @method      addQuestion
@@ -29,13 +32,13 @@ class Qpage {
      * @param       {object} question 问题对象
      */
     addQuestion = question => {
-        if(this.max <= quenum){
+        if(this.max <= this.quenum){
             console.error('question num has reached the maximum!');
             return;
         }
-        let que = Object.assign({}, question, {index: this.quenum++});
+        let que = Object.assign({}, question, {index: ++this.quenum, key: this.key++});
         this.questions.push(que);
-    },
+    }
 
     /**
      * @method      removeQuestion
@@ -43,7 +46,7 @@ class Qpage {
      * @param       {number} index 问题位置
      */
     removeQuestion = index => {
-        this.questions.splice(index, 1);
+        this.questions.splice(index-1, 1);
         this.questions.forEach((que, ind) => {
             if(ind + 1 >= index){
                 que.index = ind + 1;
@@ -53,3 +56,4 @@ class Qpage {
     }
 
 }
+export default Qpage;
