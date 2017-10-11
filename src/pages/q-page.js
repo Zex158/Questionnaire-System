@@ -31,10 +31,37 @@ class Qpage extends React.Component {
         }
     }
 
+
     removeQuestion = index => {
         this.setState( preState => {
             preState.page.removeQuestion(index);
             return { page: preState.page };
+        })
+    }
+
+    addOption = key => {
+        this.setState(preState => {
+            for(let que of preState.page.questions){
+                if(que.key == key){
+                    que.addOption(new Option());
+                    return { page: preState.page };
+                }
+            }
+            console.error('option key error!');
+            return;
+        })
+    }
+
+    removeOption = (qKey, index) => {
+        this.setState(preState => {
+            for(let que of preState.page.questions){
+                if(que.key == qKey){
+                    que.removeOption(index);
+                    return { page: preState.page };
+                }
+            }
+            console.error('option key error!');
+            return;
         })
     }
 
@@ -56,7 +83,9 @@ class Qpage extends React.Component {
                                     question = {question}
                                     key = {question.key}
                                     removeQuestion = {this.removeQuestion}
-                                    action = {this.state.action} />);
+                                    action = {this.state.action}
+                                    addOption={this.addOption}
+                                    removeOption={this.removeOption} />);
                     })}
 
                     <br />

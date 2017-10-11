@@ -5,9 +5,10 @@ class Option {
      * @param       {string}    index   索引 A、B、C、D
      * @param       {string}    content 选项内容
      */
-    constructor(content, index='') {
+    constructor(content='', index='') {
         this.index = index;
         this.content = content;
+        this.key = null;
     },
 
     //更新选项

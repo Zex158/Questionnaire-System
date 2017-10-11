@@ -36,6 +36,7 @@ class Question {
     }
 
     //将数值index转化为字母index
+    //eg：index 1 => A ; 2 => B...
     _updateIndex = (num) => String.fromCharCode('A'.charCodeAt() + num - 1)
 
     /**
@@ -49,7 +50,7 @@ class Question {
             return;
         }
         let opt = Object.assign({}, option, {
-            index: this._updateIndex(this.optnum++),
+            index: this._updateIndex(++this.optnum),
             //key值计算
             key: this.key*1000+this.optKey++
         });

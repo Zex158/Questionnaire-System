@@ -9,6 +9,14 @@ class Questionbox extends React.Component {
 
     }
 
+    addOption = () => {
+        this.props.addOption(this.props.question.key);
+    }
+
+    removeOption = index => {
+        this.props.removeOption(this.props.question.key, index);
+    }
+
     render = () => {
         return(
             <div className='q-box'>
@@ -20,9 +28,11 @@ class Questionbox extends React.Component {
                                 key = {opt.key}
                                 option = {opt}
                                 action = {this.props.action}
-                                type = {this.props.question.type} />
+                                type = {this.props.question.type}
+                                removeOption={this.removeOption} />
                 })}
-                <button className='opt-add-btn'>add option</button>
+                <br />
+                <button className='opt-add-btn' onClick={this.addOption}>add option</button>
             </div>
         );
     }
