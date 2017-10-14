@@ -33,7 +33,7 @@ class Qpage {
      */
     addQuestion = question => {
         if(this.max <= this.quenum){
-            console.error('question num has reached the maximum!');
+            console.warn('question num has reached the maximum!');
             return;
         }
         let que = Object.assign({}, question, {index: ++this.quenum, key: this.key++});

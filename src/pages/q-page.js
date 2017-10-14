@@ -4,6 +4,8 @@ import Questionbox from 'components/questionbox';
 import Page from 'model/Qpage';
 import Question from 'model/Question';
 
+require('styles/q-page.less');
+
 class Qpage extends React.Component {
     constructor(props) {
         super(props);

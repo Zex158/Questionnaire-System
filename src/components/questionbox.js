@@ -1,6 +1,8 @@
 import React from 'react';
 import Option from 'components/option';
 
+require('styles/questionbox.less');
+
 class Questionbox extends React.Component {
     constructor(props){
         super(props);
@@ -32,7 +34,7 @@ class Questionbox extends React.Component {
                                 removeOption={this.removeOption} />
                 })}
                 <br />
-                <button className='opt-add-btn' onClick={this.addOption}>add option</button>
+                <button className='add-btn' onClick={this.addOption}>add option</button>
             </div>
         );
     }

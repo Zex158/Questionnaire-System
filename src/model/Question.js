@@ -46,7 +46,7 @@ class Question {
      */
     addOption = (option) => {
         if(this.max <= this.optnum){
-            console.error('option num has reached the maximum!');
+            console.warn('option num has reached the maximum!');
             return;
         }
         let opt = Object.assign({}, option, {
